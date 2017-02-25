@@ -52,12 +52,13 @@ switch(directionStep){
 }
 currentStep = (++currentStep <4 ) ? currentStep : 0;
 
-currentStep = currentStep + 1;
-if(currentStep < 4){
- currentStep = currentStep;
-}
-else{
- currentStep = 0;
+//this is actually that that sentenca above sais^
+//currentStep = currentStep + 1;
+//if(currentStep < 4){
+// currentStep = currentStep;
+//}
+//else{
+// currentStep = 0;
 }
 }
 
