@@ -3,6 +3,7 @@ int servoPosition;
 int grabCount;
 int teller;
 int vorigeStatus;
+int graden;
 
 bool grabdingStaatStil = false;
 bool claw = false;
@@ -29,9 +30,9 @@ void loop() {
   // put your main code here, to run repeatedly:
 
   analogRead (buttonState);
-  servoposition = map(buttonState, 0, 1023, 0, 180); //" map(value, fromLow, fromHigh, toLow, toHigh)
+  servoPosition = map(buttonState, 0, 1023, 0, 180); //" map(value, fromLow, fromHigh, toLow, toHigh)
 
-  if (graden = < 30 && grabdingStaatStil)
+  if (graden <= 30 && grabdingStaatStil)
   {
     if (claw == false)
     {
