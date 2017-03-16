@@ -7,7 +7,6 @@ int vorigeStatus;
 bool grabdingStaatStil = false;
 bool claw = false;
 
-//this is nothing yet, working on it. ;)
 /*
   Een grijper die open of dicht gaat naar aanleiding van de waarde die middels een draaiknop wordt gegeven (en middels MAP functie omgevormd tot een bruikbare waarde)
   Als een object gegrepen is,
@@ -46,7 +45,7 @@ void loop() {
   }
 
 
-  
+/*onderstaand is om te zorgen dat hij herkent dat de motor stilstaat*/  
 
   if (buttonState = vorigeStatus )
   {
