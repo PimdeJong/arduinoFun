@@ -60,5 +60,4 @@ void loop() {
   }
   vorigeStatus = buttonState;
 
-
 }
