@@ -4,13 +4,14 @@ int grabCount;
 int teller;
 int vorigeStatus;
 int angle;
-bool blinkState = false;
-
-unsigned long time; 
-unsigned long time2 = 0 ;
-
 bool grabdingStaatStil = false;
 bool claw = false;
+
+//led setup:
+int ledPin = 9;
+bool blinkState = false;
+unsigned long time;
+unsigned long time2 = 0 ;
 
 /*
   Een grijper die open of dicht gaat naar aanleiding van de waarde die middels een draaiknop wordt gegeven (en middels MAP functie omgevormd tot een bruikbare waarde)
@@ -26,12 +27,10 @@ bool claw = false;
   En geeft weer indien een object wordt vastgehouden.*/
 
 void setup() {
-  // put your setup code here, to run once:
 
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
 
   analogRead (buttonState);
   servoPosition = map(buttonState, 0, 1023, 0, 180); //" map(value, fromLow, fromHigh, toLow, toHigh)
@@ -43,25 +42,19 @@ void loop() {
       claw = true;
       grabCount ++;
     }
-  }
-  else
+  } else
   {
     claw = false;
   }
-
-
-/*onderstaand is om te zorgen dat hij herkent dat de motor stilstaat*/  
-
+      analogWrite (ledPin, ledlight); /*ledlight is een apparte methode*/
+  /*onderstaand is om te zorgen dat hij herkent dat de motor stilstaat*/
   if (buttonState = vorigeStatus )
   {
     teller ++;
   }
-
   if (teller >= 30)
   {
     grabdingStaatStil = true;
-
   }
   vorigeStatus = buttonState;
-
 }
