@@ -3,8 +3,11 @@ int servoPosition;
 int grabCount;
 int teller;
 int vorigeStatus;
-int graden;
+int angle;
+bool blinkState = false;
+
 unsigned long time; 
+unsigned long time2 = 0 ;
 
 bool grabdingStaatStil = false;
 bool claw = false;
@@ -33,7 +36,7 @@ void loop() {
   analogRead (buttonState);
   servoPosition = map(buttonState, 0, 1023, 0, 180); //" map(value, fromLow, fromHigh, toLow, toHigh)
 
-  if (graden <= 30 && grabdingStaatStil)
+  if (angle <= 30 && grabdingStaatStil)
   {
     if (claw == false)
     {

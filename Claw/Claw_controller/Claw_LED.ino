@@ -1,19 +1,28 @@
-void LED(int offset)
+void LED(int fadeValue)
 {
 int ledPin = 9;                              // LED connected to digital pin 9
-int fadevalue;
+int blinkValue = 500;
 
-
-  if ( claw == true);
+  if ( claw == true)                        /* Case 1 The claw has grabbed*/
   {
-    LED = 255 // need to blink lights
-  }
-  else ;
+    if (time >= (time2 + blinkValue) && blinkState == true)
+    {
+      time2 = time;
+      analogWrite (ledPin, fadeValue);
+      blinkState = false;
+    }
+    else if (time >= (time2 + blinkValue) && blinkState == false)
+    {
+      time2 = time;
+      blinkState = 0;
+      analogWrite (ledPin, fadeValue);
+      blinkState = true;
+    }
+  } else                                    /* Case 2, The claw is moving or has not started yet*/
   {
-    LED = map(degrees, 0, 180, 0, 255);     //
+    fadeValue = map(angle, 0, 180, 0, 255);     //
     analogWrite(ledPin, LED);
   }
-  
   time = millis;
 }
 
