@@ -4,6 +4,7 @@ int grabCount;
 int teller;
 int vorigeStatus;
 int graden;
+unsigned long time; 
 
 bool grabdingStaatStil = false;
 bool claw = false;
