@@ -36,19 +36,14 @@ unsigned long _time2 = 0 ;
 void setup() {
 }
 
-void loop() {
-
+void loop() 
+{
   analogRead (_buttonState);
   _servoPosition = map(_buttonState, 0, 1023, 0, 180); //" map(value, fromLow, fromHigh, toLow, toHigh)
-
-  Claw (_angle, _grabdingStaatStil, _claw, _grabCount);
-
+  _claw = Claw (_angle, _grabdingStaatStil, _claw, _grabCount);
   /*ClawClass *clawInstantie = new ClawClass();*/ // = spelen met objecten
-
   analogWrite (_ledPin, LedLight()); /*Ledlight is een apparte methode ->> + () anders weet m computertje niet dat het om een methode gaat*/
-
-  ClawStagnation (_teller, _buttonState, _vorigeStatus, _grabdingStaatStil);  /*om te zorgen dat hij herkent dat de motor stilstaat*/
-
+  _grabdingStaatStil = ClawStagnation (_teller, _buttonState, _vorigeStatus);  /*om te zorgen dat hij herkent dat de motor stilstaat*/
 }
 
 

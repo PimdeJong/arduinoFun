@@ -1,5 +1,6 @@
-bool ClawStagnation(int &teller, int buttonState, int &vorigeStatus, bool grabdingStaatStil)
+bool ClawStagnation(int &teller, int buttonState, int &vorigeStatus)
 {
+  bool grabdingStaatStil;
   if (buttonState = vorigeStatus )
   {
     teller ++;
