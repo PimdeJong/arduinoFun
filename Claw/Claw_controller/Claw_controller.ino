@@ -1,15 +1,22 @@
-int buttonState = 1 ;//
-int servoPosition;
-int grabCount;
-int teller;
-int vorigeStatus;
-int angle;
+/*class ClawClass
+{
+  public: int angle;
+  public: int aantalKeerStilStaan;
+  virtual bool StaatStil(){   }  
+};*/
 
-bool grabdingStaatStil = false;
-bool claw = false;
+int _buttonState = 1 ;//
+int _servoPosition;
+int _grabCount;
+int _teller;
+int _vorigeStatus;
+int _angle; //????
+
+bool _grabdingStaatStil = false;
+bool _claw = false;
 
 //led setup:
-int ledPin = 9;
+int ledPin = 9;                            // LED connected to digital pin 9
 bool blinkState = false;
 unsigned long time;
 unsigned long time2 = 0 ;
@@ -33,32 +40,27 @@ void setup() {
 
 void loop() {
 
-  analogRead (buttonState);
-  servoPosition = map(buttonState, 0, 1023, 0, 180); //" map(value, fromLow, fromHigh, toLow, toHigh)
+  analogRead (_buttonState);
+  _servoPosition = map(_buttonState, 0, 1023, 0, 180); //" map(value, fromLow, fromHigh, toLow, toHigh)
 
-  if (angle <= 30 && grabdingStaatStil)
-  {
-    if (claw == false)
-    {
-      claw = true;
-      grabCount ++;
-    }
-  } else
-  {
-    claw = false;
-  }
-  analogWrite (ledPin, ledlight); /*ledlight is een apparte methode*/
-
+  Claw(_angle, _grabdingStaatStil, _claw,_grabCount);
+  
+  /*ClawClass *clawInstantie = new ClawClass();*/
+  
+  analogWrite (ledPin, LedLight()); /*Ledlight is een apparte methode () moeten wel altijd achter een methode staan, anders weet m computertje niet dat het om een methode gaat*/
   
   /*onderstaand is om te zorgen dat hij herkent dat de motor stilstaat*/
-  
-  if (buttonState = vorigeStatus )
+  if (_buttonState = _vorigeStatus )
   {
-    teller ++;
+    _teller ++;
   }
-  if (teller >= 30)
+  if (_teller >= 30)
   {
-    grabdingStaatStil = true;
+    _grabdingStaatStil = true;
   }
-  vorigeStatus = buttonState;
+  _vorigeStatus = _buttonState;
 }
+
+
+
+
