@@ -4,6 +4,7 @@ int grabCount;
 int teller;
 int vorigeStatus;
 int angle;
+
 bool grabdingStaatStil = false;
 bool claw = false;
 
@@ -46,8 +47,11 @@ void loop() {
   {
     claw = false;
   }
-      analogWrite (ledPin, ledlight); /*ledlight is een apparte methode*/
+  analogWrite (ledPin, ledlight); /*ledlight is een apparte methode*/
+
+  
   /*onderstaand is om te zorgen dat hij herkent dat de motor stilstaat*/
+  
   if (buttonState = vorigeStatus )
   {
     teller ++;
