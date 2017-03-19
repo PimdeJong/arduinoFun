@@ -1,9 +1,8 @@
 /*class ClawClass
-{
-  public: int angle;
+  { public: int angle;
   public: int aantalKeerStilStaan;
-  virtual bool StaatStil(){   }  
-};*/
+  virtual bool StaatStil(){   }
+  };*/
 
 int _buttonState = 1 ;//
 int _servoPosition;
@@ -35,7 +34,6 @@ unsigned long _time2 = 0 ;
   En geeft weer indien een object wordt vastgehouden.*/
 
 void setup() {
-
 }
 
 void loop() {
@@ -43,22 +41,14 @@ void loop() {
   analogRead (_buttonState);
   _servoPosition = map(_buttonState, 0, 1023, 0, 180); //" map(value, fromLow, fromHigh, toLow, toHigh)
 
-  Claw(_angle, _grabdingStaatStil, _claw,_grabCount);
-  
-  /*ClawClass *clawInstantie = new ClawClass();*/
-  
-  analogWrite (_ledPin, LedLight()); /*Ledlight is een apparte methode () moeten wel altijd achter een methode staan, anders weet m computertje niet dat het om een methode gaat*/
-  
-  /*onderstaand is om te zorgen dat hij herkent dat de motor stilstaat*/
-  if (_buttonState = _vorigeStatus )
-  {
-    _teller ++;
-  }
-  if (_teller >= 30)
-  {
-    _grabdingStaatStil = true;
-  }
-  _vorigeStatus = _buttonState;
+  Claw (_angle, _grabdingStaatStil, _claw, _grabCount);
+
+  /*ClawClass *clawInstantie = new ClawClass();*/ // = spelen met objecten
+
+  analogWrite (_ledPin, LedLight()); /*Ledlight is een apparte methode ->> + () anders weet m computertje niet dat het om een methode gaat*/
+
+  ClawStagnation (_teller, _buttonState, _vorigeStatus, _grabdingStaatStil);  /*om te zorgen dat hij herkent dat de motor stilstaat*/
+
 }
 
 
