@@ -14,7 +14,7 @@
   }
 }*/
 
-bool Claw (int angle, bool grabdingStaatStil, bool claw, int grabCount)
+bool Claw (int angle, bool grabdingStaatStil, bool claw, int &grabCount)
 {
   if (angle <= 30 && grabdingStaatStil)
   {

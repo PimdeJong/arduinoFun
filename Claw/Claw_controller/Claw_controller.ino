@@ -16,10 +16,10 @@ bool _grabdingStaatStil = false;
 bool _claw = false;
 
 //led setup:
-int ledPin = 9;                            // LED connected to digital pin 9
-bool blinkState = false;
-unsigned long time;
-unsigned long time2 = 0 ;
+int _ledPin = 9;                            // LED connected to digital pin 9
+bool _blinkState = false;
+unsigned long _time;
+unsigned long _time2 = 0 ;
 
 /*
   Een grijper die open of dicht gaat naar aanleiding van de waarde die middels een draaiknop wordt gegeven (en middels MAP functie omgevormd tot een bruikbare waarde)
@@ -47,7 +47,7 @@ void loop() {
   
   /*ClawClass *clawInstantie = new ClawClass();*/
   
-  analogWrite (ledPin, LedLight()); /*Ledlight is een apparte methode () moeten wel altijd achter een methode staan, anders weet m computertje niet dat het om een methode gaat*/
+  analogWrite (_ledPin, LedLight()); /*Ledlight is een apparte methode () moeten wel altijd achter een methode staan, anders weet m computertje niet dat het om een methode gaat*/
   
   /*onderstaand is om te zorgen dat hij herkent dat de motor stilstaat*/
   if (_buttonState = _vorigeStatus )
