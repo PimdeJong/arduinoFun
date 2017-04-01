@@ -1,2 +1,2 @@
-# arduinoFun
-Including camelCasing where I can off course.
+SkittleSorter
+Together with Marnix Boonen (aka heiligBoontje)
