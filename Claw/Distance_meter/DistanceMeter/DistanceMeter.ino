@@ -70,8 +70,17 @@ long microsecondsToCentimeters(long microseconds)
 void SweepForward(int NUM_OF_CYCLES) {
   for (int j = 1; j < NUM_OF_CYCLES; j++)
     for (pos = 0; pos = 170; pos += 1)
-    { servo.write(pos);
+    {
+      servo.write(pos);
       delay(100);
-    }
-    
+    } 
 }
+
+lastButtonState = buttonState;
+ if (buttonPushCounter % 2 == 0) // moet misschien een keer drukken zijn
+  { 
+    digitalWrite(servoPin, HIGH);
+  } else {
+    digitalWrite(servoPin, LOW);
+ }
+
