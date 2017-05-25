@@ -14,7 +14,6 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(6, PIN, NEO_GRB + NEO_KHZ800);
 // unsigned int 0 65000 ofzo, voro  als je niet in negatief hoeft of hoger
 // long -2miljard/joen tot ''plus
 // long long nog groter
-long long long ddgdg = 0;
 
 byte ledPositions[3][2] = {
   {0, 5},
