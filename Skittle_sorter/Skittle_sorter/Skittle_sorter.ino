@@ -1,8 +1,3 @@
-/*     Arduino Project - Color Sorting Machine
- *
- *  by Dejan Nedelkovski, www.HowToMechatronics.com
- *
- */
 #include <Servo.h>
 #define S0 2
 #define S1 3
