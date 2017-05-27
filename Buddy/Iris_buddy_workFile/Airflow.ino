@@ -12,7 +12,7 @@ switch ( _stand )
   previousStand = stand;
 }
 
-// nu nog een variable om te zien of forward of backward is veranderd, deze coppelen aan milis opnieuw tellen
+// variable om te zien of forward of backward is veranderd, deze koppelen aan milis opnieuw tellen
 // of de waarde  van de led coppelen aan een map waarde van de range tussen twee standen.
 
 
