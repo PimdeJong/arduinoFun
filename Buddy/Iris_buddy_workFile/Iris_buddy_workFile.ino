@@ -6,16 +6,20 @@ byte ledPositions[3][2] = {
   {0, 5},
   {1, 4},
   {2, 3},
-};                                /* niet zeker of ik dit zo moet doen, het is handig voor de grid van de accordeon maar voor de luchtkanalen is het een ander verhaal.*/
+};                                
 
 
 int _infrared = 0;               //infrarood cable op 0
 
 /*Dingen voor Herkenning dat er niets gebeurt*/
-int _teller;
+byte _teller;
 int _previousStand;
 bool _stagnated = false;
+bool _backward
 
+byte _stand
+
+byte _fadeValue
 
 void setup()
 {
@@ -26,6 +30,6 @@ void setup()
 void loop()
 {
   analogRead (_infrared);//0-1023
-  _stand = Stand ( _infrared, _previousStand, _continue);
+  _stand = Stand ( _infrared, _previousStand, _backward, _fadeValue);
   _stagnated = Stagnation (_teller, _infrared, _previousStand);    /*om te zorgen dat hij herkent dat alles stilstaat*/
 }

@@ -1,11 +1,11 @@
 // komt van: _stand = Stand (_infrared, _previousStand, _backward);
-int Stand( int infrared, int &previousStand , int &backward, byte &fadeValue)
+byte Stand( int infrared, int &previousStand , bool &backward, byte &fadeValue)
 {
   byte stand;
   if (infrared = < 40)
   {
     stand = 1;
-    fadeValue= map(infrared,0,40,0,255); //map(value, fromLow, fromHigh, toLow, toHigh)
+    fadeValue= map(infrared,0,40,0,255); /**/
   }
   if (infrared = < 200)
   {
@@ -34,7 +34,7 @@ int Stand( int infrared, int &previousStand , int &backward, byte &fadeValue)
   if (stand > previousStand)
   { backward = true;
   }
- if (
+ if (stand < previousStand)
   {
     backward = false;
   }
