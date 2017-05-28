@@ -24,13 +24,15 @@ void setup() {
 void loop() {
 
   Serial.println(analogRead(0)); //0-1023
-  int j = analogRead(0) - 768;// if you're outside deviding it by four will make the difference very small ( /4
+  int j = analogRead(0) /4 ;// if you're outside deviding it by four will make the difference very small ( /4
 
-  for (int i = 0; i < 3; i++) {
+  for (int i = 0; i < 3; i++) 
+  {
     strip.setPixelColor(ledPositions[i][0], strip.Color(0, j, 0)); /*fellheid liniaire toename*/
   }
 
-  for (int i = 0; i < 3; i++) {
+  for (int i = 0; i < 3; i++) 
+  {
     strip.setPixelColor(ledPositions[i][1], strip.Color(0, 0, j * j / 256));/* fellheid exponentiele toename (wordt opgevat als liniaire toename)*/
   }
   strip.show();
