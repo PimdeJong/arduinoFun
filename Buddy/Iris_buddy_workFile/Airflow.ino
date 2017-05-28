@@ -7,8 +7,7 @@ switch ( _stand )
     
   }
   break;
-
-
+  
   previousStand = stand;
 }
 

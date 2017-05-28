@@ -9,17 +9,17 @@ byte ledPositions[3][2] = {
 };                                
 
 
-int _infrared = 0;               //infrarood cable op 0
+int _infrared = 0;               //infrared cable 0
 
 /*Dingen voor Herkenning dat er niets gebeurt*/
 byte _teller;
 int _previousStand;
 bool _stagnated = false;
-bool _backward
+bool _backward;
 
-byte _stand
+byte _stand;
 
-byte _fadeValue
+byte _fadeValue;
 
 void setup()
 {

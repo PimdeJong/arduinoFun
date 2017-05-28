@@ -24,7 +24,7 @@ void setup() {
 void loop() {
 
   Serial.println(analogRead(0)); //0-1023
-  int j = analogRead(0) / 4;
+  int j = analogRead(0) - 768;// if you're outside deviding it by four will make the difference very small ( /4) so a other option is to do it -768 leaving a range of 0 - 255
 
   for (int i = 0; i < 3; i++) {
     strip.setPixelColor(ledPositions[i][0], strip.Color(0, j, 0)); /*fellheid liniaire toename*/
