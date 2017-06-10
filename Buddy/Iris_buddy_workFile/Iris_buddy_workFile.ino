@@ -41,8 +41,12 @@ void setup()
 void loop()
 {
   static int oldvalue = 0;
-
   int _infrared = (oldvalue + (analogRead(0) + analogRead(0) + analogRead(0) + analogRead(0) + analogRead(0) + analogRead(0) + analogRead(0) + analogRead(0)) / 8) / 2; //
+  
+  int _infrared = 0;
+  for (int i = 0; i < 8; i++) _infrared += analogRead(0);
+  _infrared /= 8;
+  
   oldvalue = _infrared;
   Serial.println(_infrared); //0-1023
   //Serial.println( analogRead _infrared);
