@@ -61,16 +61,16 @@ void loop()
 
 
 void valueToLedScale(int value) {
-
   int calc = map(value, 0, 1023, 0, 8 * 256 - 1);
 
   for (int i = 0; i < 7; i++) strip.setPixelColor(ledPositions[i][0], strip.Color(0, 255, 0));
   for (int i = 0; i < 7; i++) strip.setPixelColor(ledPositions[i][9], strip.Color(0, 0, 255));
 
-  for (int j = 0; j < 8; j++) {
-    for (int i = 0; i < 7; i++) strip.setPixelColor(ledPositions[i][1 + j], strip.Color(0, constrain(calc - 256 * j, 0, 255), 255 - constrain(calc - 256 * j, 0, 255)));
-  }
+  for (int j = 0; j < 8; j++) for (int i = 0; i < 7; i++) strip.setPixelColor(ledPositions[i][1 + j], strip.Color(0, constrain(calc - 256 * j, 0, 255), 255 - constrain(calc - 256 * j, 0, 255)));
+
 
   strip.show();
 }
+
+
 
