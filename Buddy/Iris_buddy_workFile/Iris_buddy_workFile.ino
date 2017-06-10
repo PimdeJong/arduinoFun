@@ -14,7 +14,7 @@ byte ledPositions[7][4] = {
 };
 
 
-           
+
 
 /*Dingen voor Herkenning dat er niets gebeurt*/
 byte _teller;
@@ -26,18 +26,25 @@ byte _stand;
 bool _changed;
 byte _fadeValue;
 
+
+
 void setup()
 {
   Serial.begin(115200);
   strip.begin();
-    strip.show(); // Initialize all pixels to 'off'
- // strip.show(); // Initialize all pixels to 'off'
+  strip.show(); // Initialize all pixels to 'off'
+  // strip.show(); // Initialize all pixels to 'off'
 }
+
+
 
 void loop()
 {
-  Serial.println(analogRead(0)); //0-1023
-  int _infrared = analogRead(0);//
+  static int oldvalue = 0;
+
+  int _infrared = (oldvalue + (analogRead(0) + analogRead(0) + analogRead(0) + analogRead(0) + analogRead(0) + analogRead(0) + analogRead(0) + analogRead(0)) / 8) / 2; //
+  oldvalue = _infrared;
+  Serial.println(_infrared); //0-1023
   //Serial.println( analogRead _infrared);
   //analogRead (_infrared);//0-1023  Serial.println(analogRead(0));
   _stand = Stand ( _infrared, _previousStand, _backward, _fadeValue, _changed);

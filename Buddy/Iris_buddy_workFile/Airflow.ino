@@ -4,7 +4,7 @@ void Airflow ()
   {
     case 1:
       // {
-      // if ( _backward = true)
+      // if ( _backward == true)
       {
         for (int i = 0; i < 3; i++ ) { // Variabel om een rij te printen
           strip.setPixelColor(ledPositions[i][0], strip.Color(_fadeValue, 0, 0));/* (0, 0, j * j / 256)fellheid exponentiele toename (wordt opgevat als liniaire toename)*/
@@ -13,18 +13,18 @@ void Airflow ()
       }      break;
     case 2:
       // {
-      // if ( _backward = true)
+      // if ( _backward == true)
       {
-        for (int i = 0; i < 3; i++ ) { // Variabel om een rij te printen
+        for (int i = 0; i < 4; i++ ) { // Variabel om een rij te printen
           strip.setPixelColor(ledPositions[i][1], strip.Color(0, _fadeValue , 0));/* (0, 0, j * j / 256)fellheid exponentiele toename (wordt opgevat als liniaire toename)*/
         }
         Serial.print ("case 2");
       }      break;
     case 3:
       // {
-      // if ( _backward = true)
+      // if ( _backward == true)
       {
-        for (int i = 0; i < 3; i++ ) 
+        for (int i = 0; i < 5; i++ ) 
         { // Variabel om een rij te printen
           strip.setPixelColor(ledPositions[i][0], strip.Color(0, 0 , _fadeValue));/* (0, 0, j * j / 256)fellheid exponentiele toename (wordt opgevat als liniaire toename)*/
         }
@@ -32,9 +32,9 @@ void Airflow ()
       }      break;
     case 4:
       // {
-      // if ( _backward = true)
+      // if ( _backward == true)
       {
-        for (int i = 0; i < 3; i++ ) 
+        for (int i = 0; i < 6; i++ ) 
         { // Variabel om een rij te printen
           strip.setPixelColor(ledPositions[i][1], strip.Color(_fadeValue, _fadeValue , 0));/* (0, 0, j * j / 256)fellheid exponentiele toename (wordt opgevat als liniaire toename)*/
         }
@@ -44,9 +44,9 @@ void Airflow ()
 
     case 5:
       // {
-      // if ( _backward = true)
+      // if ( _backward == true)
       {
-        for (int i = 0; i < 3; i++ )
+        for (int i = 0; i < 7; i++ )
         { // Variabel om een rij te printen
           strip.setPixelColor(ledPositions[i][0], strip.Color(0, _fadeValue , _fadeValue));/* (0, 0, j * j / 256)fellheid exponentiele toename (wordt opgevat als liniaire toename)*/
         }
