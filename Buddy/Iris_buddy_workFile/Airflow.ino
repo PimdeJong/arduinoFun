@@ -9,7 +9,7 @@ void Airflow ()
         for (int i = 0; i < 3; i++ ) { // Variabel om een rij te printen
           strip.setPixelColor(ledPositions[i][0], strip.Color(_fadeValue, 0, 0));/* (0, 0, j * j / 256)fellheid exponentiele toename (wordt opgevat als liniaire toename)*/
         }
-        Serial.print ("Ik ga je in mijn serial monitor plotter antwoorden");
+        Serial.print ("case 1");
       }      break;
     case 2:
       // {
@@ -18,7 +18,7 @@ void Airflow ()
         for (int i = 0; i < 3; i++ ) { // Variabel om een rij te printen
           strip.setPixelColor(ledPositions[i][1], strip.Color(0, _fadeValue , 0));/* (0, 0, j * j / 256)fellheid exponentiele toename (wordt opgevat als liniaire toename)*/
         }
-        Serial.print ("Het is voor yolo dat ik heel slim voor school weet te gebruiken");
+        Serial.print ("case 2");
       }      break;
     case 3:
       // {
@@ -28,7 +28,7 @@ void Airflow ()
         { // Variabel om een rij te printen
           strip.setPixelColor(ledPositions[i][0], strip.Color(0, 0 , _fadeValue));/* (0, 0, j * j / 256)fellheid exponentiele toename (wordt opgevat als liniaire toename)*/
         }
-        Serial.print ("zonnepanelen op je tuinslang");
+        Serial.print ("case 3");
       }      break;
     case 4:
       // {
@@ -38,7 +38,7 @@ void Airflow ()
         { // Variabel om een rij te printen
           strip.setPixelColor(ledPositions[i][1], strip.Color(_fadeValue, _fadeValue , 0));/* (0, 0, j * j / 256)fellheid exponentiele toename (wordt opgevat als liniaire toename)*/
         }
-        Serial.print ("Facking briljant idee");
+        Serial.print ("case 4");
       }
             break;
 
@@ -50,7 +50,7 @@ void Airflow ()
         { // Variabel om een rij te printen
           strip.setPixelColor(ledPositions[i][0], strip.Color(0, _fadeValue , _fadeValue));/* (0, 0, j * j / 256)fellheid exponentiele toename (wordt opgevat als liniaire toename)*/
         }
-        Serial.print ("vooral omdat het hilarisch is");
+        Serial.print ("case 5");
       }
       strip.show();
       // }
@@ -61,7 +61,7 @@ void Airflow ()
         { // Variabel om een rij te printen
           strip.setPixelColor(ledPositions[i][1], strip.Color(_fadeValue, _fadeValue, _fadeValue));
         }/* (0, 0, j * j / 256)fellheid exponentiele toename (wordt opgevat als liniaire toename)*/
-        Serial.print ("hahahha");
+        Serial.print ("Default");
         strip.show();
       }
       break;

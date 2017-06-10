@@ -2,7 +2,7 @@
 bool Stagnation(int teller, int stand, int previousStand)
 {
   bool stagnated;
-  if (stand = previousStand )
+  if (stand == previousStand )
   {
     teller ++;
   }

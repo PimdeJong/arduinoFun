@@ -2,11 +2,15 @@
 #define ledPin 6                 /*ledjes*/
 //#define _infrared (0)             //infrared cable 0
 
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(6, ledPin, NEO_GRB + NEO_KHZ800); /* (total LED's,*/
-byte ledPositions[3][2] = {
-  {0, 5},
-  {1, 4},
-  {2, 3},
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(27, ledPin, NEO_GRB + NEO_KHZ800); /* (total LED's,*/
+byte ledPositions[7][4] = {
+  { 0, 12, 13, 26},
+  { 1, 11, 14, 25},
+  { 2, 10, 15, 24},
+  { 3, 9, 16, 23},
+  { 4, 8, 17, 22},
+  { 5, 7, 18, 21},
+  { 27, 6, 19, 20} ,
 };
 
 
