@@ -2,35 +2,59 @@
 byte Stand ( int infrared, int &previousStand , bool &backward, byte &fadeValue, bool changed)
 {
   byte stand;
-  if (infrared < 40)
+  int minGebied = (( _infraredMax - _infraredMin) * 0.03 + _infraredMin );
+  int a = (( _infraredMax - _infraredMin) * 0.20 + _infraredMin );
+  int b = (( _infraredMax - _infraredMin) * 0.40 + _infraredMin );
+  int c = (( _infraredMax - _infraredMin) * 0.60 + _infraredMin );
+  int d = (( _infraredMax - _infraredMin) * 0.80 + _infraredMin );
+  int maxgGebied = (( _infraredMax - _infraredMin) * 0.97 + _infraredMin );
+
+
+  while (backward == false)
   {
-    stand = 1;
-    fadeValue = map(infrared, 0, 20, 0, 255); /**/
+    if (infrared <= a )
+    {
+      stand = 1;
+      fadeValue = map(infrared,  _infraredMin, a, 0, 255); /**/
+    }
+    else if (infrared <= c )
+    {
+      stand = 2;
+      fadeValue = map(infrared, b, c, 0, 255);
+    }
+    else if (infrared <= d )
+    {
+      stand = 3;
+      fadeValue = map(infrared, c, d, 0, 255);
+    }
+    else //if (infrared > d)
+    {
+      stand = 4;
+      fadeValue = map(infrared, d, _infraredMax, 0, 255);
+    }
   }
-  else if (infrared < 200)
-  {
-    stand = 2;
-    fadeValue = map(infrared, 20, 80, 0, 255);
-  }
-  else if (infrared < 500)
-  {
-    stand = 3;
-    fadeValue = map(infrared, 80, 200, 0, 255);
-  }
-  else if (infrared < 700)
-  {
-    stand = 4;
-    fadeValue = map(infrared, 200, 500, 0, 255);
-  }
-  else if (infrared < 800)
-  {
-    stand = 5;
-    fadeValue = map(infrared, 500, 1020, 0, 255);
-  }
-  else
-  {
-    stand = 0;
-  }
+  while (backward == true)
+    if (infrared > d)
+    {
+      stand = 5;
+      fadeValue = map(infrared, _infraredMax, d, 0, 255);
+    }
+    else if (infrared >= c )
+    {
+      stand = 6;
+      fadeValue = map(infrared, d, c, 0, 255);
+    }
+    else if (infrared >= b )
+    {
+      stand = 7;
+      fadeValue = map(infrared, c, b, 0, 255);
+    }
+    else if (infrared >= a )
+    {
+      stand = 8;
+      fadeValue = map(infrared, c, b, 0, 255);
+    }
+  
   if (stand > previousStand)
   {
     backward = true;
@@ -40,7 +64,7 @@ byte Stand ( int infrared, int &previousStand , bool &backward, byte &fadeValue,
   {
     backward = false;
   }
-  if (previousStand =! stand) //deze alleen nodig als ik dat wil koppelen aan het opnieuw tellen van milis
+  if (previousStand = ! stand) //deze alleen nodig als ik dat wil koppelen aan het opnieuw tellen van milis
   {
     changed = true;
   }
@@ -51,4 +75,4 @@ byte Stand ( int infrared, int &previousStand , bool &backward, byte &fadeValue,
   previousStand = stand;
   return stand;
 }
-
+}

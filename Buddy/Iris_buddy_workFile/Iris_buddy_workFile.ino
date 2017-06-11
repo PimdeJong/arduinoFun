@@ -2,9 +2,6 @@
 #define ledPin 6                 /*ledjes*/
 //#define _infrared (0)             //infrared cable 0
 
-
-
-
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(80, ledPin, NEO_GRB + NEO_KHZ800); /* (total LED's,*/
 byte ledPositions[7][10] = {
   { 0, 12, 13, 26, 27, 40, 41, 54, 55, 67},
@@ -13,25 +10,19 @@ byte ledPositions[7][10] = {
   { 3,  9, 16, 23, 30, 37, 44, 51, 58, 64},
   { 4,  8, 17, 22, 31, 36, 45, 50, 59, 63},
   { 5,  7, 18, 21, 32, 35, 46, 49, 60, 62},
-  { 255, 6, 19, 20, 33, 34, 47, 48, 61, 255} ,
-};
-
+  { 255, 6, 19, 20, 33, 34, 47, 48, 61, 255} ,};
 byte channelFreedom[6] =
 { 76, 75, 74, 70, 69, 68};
 byte channelBlue[3] =
-
 { 73, 72, 71};
-
 byte channelGreen[3] =
 { 77, 78, 79};
-
-
-
 
 /*Dingen voor Herkenning dat er niets gebeurt*/
 byte _teller;
 int _previousStand;
 bool _stagnated = false;
+
 bool _backward;
 
 byte _stand;
@@ -52,8 +43,6 @@ void setup()
 
 void loop()
 {
-
-  //Serial.println( analogRead _infrared);
   //analogRead (_infrared);//0-1023  Serial.println(analogRead(0));
   //_stand = Stand ( _infrared, _previousStand, _backward, _fadeValue, _changed);
   //_stagnated = Stagnation (_teller, _infrared, _previousStand);    /*om te zorgen dat hij herkent dat alles stilstaat*/
@@ -65,7 +54,6 @@ void loop()
 
   valueToLedScale(map(infrared, _infraredMin, _infraredMax, 0, 1023));
 }
-
 
 void valueToLedScale(int value) {
   int calc = map(value, 0, 1023, 0, 8 * 256 - 1);
