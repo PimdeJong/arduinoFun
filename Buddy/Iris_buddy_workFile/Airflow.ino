@@ -67,7 +67,7 @@ void Airflow ()
       break;
   }
   _previousStand = _stand;
-  Serial.print ("want verder is het echt zwaar ineffectief :p ");
+  Serial.print ("Geen airflowding ");
   strip.show();
 
 }

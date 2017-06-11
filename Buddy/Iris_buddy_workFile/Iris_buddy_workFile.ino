@@ -5,7 +5,7 @@
 
 
 
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(68, ledPin, NEO_GRB + NEO_KHZ800); /* (total LED's,*/
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(80, ledPin, NEO_GRB + NEO_KHZ800); /* (total LED's,*/
 byte ledPositions[7][10] = {
   { 0, 12, 13, 26, 27, 40, 41, 54, 55, 67},
   { 1, 11, 14, 25, 28, 39, 42, 53, 56, 66},
@@ -15,6 +15,15 @@ byte ledPositions[7][10] = {
   { 5,  7, 18, 21, 32, 35, 46, 49, 60, 62},
   { 255, 6, 19, 20, 33, 34, 47, 48, 61, 255} ,
 };
+
+byte channelFreedom[6] =
+{ 76, 75, 74, 70, 69, 68};
+byte channelBlue[3] =
+
+{ 73, 72, 71};
+
+byte channelGreen[3] =
+{ 77, 78, 79};
 
 
 
@@ -44,7 +53,6 @@ void setup()
 void loop()
 {
 
-
   //Serial.println( analogRead _infrared);
   //analogRead (_infrared);//0-1023  Serial.println(analogRead(0));
   //_stand = Stand ( _infrared, _previousStand, _backward, _fadeValue, _changed);
@@ -59,7 +67,6 @@ void loop()
 }
 
 
-
 void valueToLedScale(int value) {
   int calc = map(value, 0, 1023, 0, 8 * 256 - 1);
 
@@ -67,10 +74,10 @@ void valueToLedScale(int value) {
   for (int i = 0; i < 7; i++) strip.setPixelColor(ledPositions[i][9], strip.Color(0, 0, 255));
 
   for (int j = 0; j < 8; j++) for (int i = 0; i < 7; i++) strip.setPixelColor(ledPositions[i][1 + j], strip.Color(0, constrain(calc - 256 * j, 0, 255), 255 - constrain(calc - 256 * j, 0, 255)));
-
+ for (int i = 0; i < 6; i++) strip.setPixelColor(channelFreedom[i], strip.Color(255, 0, 0));/* (0, 0, j * j / 256)fellheid exponentiele toename (wordt opgevat als liniaire toename)*/
+  for (int i = 0; i < 3; i++) strip.setPixelColor(channelBlue[i], strip.Color(0, 0, 255));
+for (int i = 0; i < 3; i++) strip.setPixelColor(channelGreen[i], strip.Color(0, 255, 0));
 
   strip.show();
 }
-
-
 
