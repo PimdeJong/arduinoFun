@@ -1,3 +1,4 @@
+//komt vanaf:
 void calibrate() {
   _infraredMin = 1023;
   _infraredMax = 0;

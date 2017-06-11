@@ -10,7 +10,8 @@ byte ledPositions[7][10] = {
   { 3,  9, 16, 23, 30, 37, 44, 51, 58, 64},
   { 4,  8, 17, 22, 31, 36, 45, 50, 59, 63},
   { 5,  7, 18, 21, 32, 35, 46, 49, 60, 62},
-  { 255, 6, 19, 20, 33, 34, 47, 48, 61, 255} ,};
+  { 255, 6, 19, 20, 33, 34, 47, 48, 61, 255} ,
+};
 byte channelFreedom[6] =
 { 76, 75, 74, 70, 69, 68};
 byte channelBlue[3] =
@@ -20,7 +21,7 @@ byte channelGreen[3] =
 
 /*Dingen voor Herkenning dat er niets gebeurt*/
 byte _teller;
-int _previousStand;
+int _previousStand = 0 ;
 bool _stagnated = false;
 
 bool _backward;
@@ -29,6 +30,7 @@ byte _stand;
 bool _changed;
 byte _fadeValue;
 
+int _infrared = 0;
 int _infraredMin = 100;
 int _infraredMax = 450;
 
@@ -43,16 +45,15 @@ void setup()
 
 void loop()
 {
-  //analogRead (_infrared);//0-1023  Serial.println(analogRead(0));
-  //_stand = Stand ( _infrared, _previousStand, _backward, _fadeValue, _changed);
+ _stand = Stand ( _infrared, _previousStand, _backward, _fadeValue, _changed);
+ _backward = Direction ( _stand, _previousStand, _changed );
   //_stagnated = Stagnation (_teller, _infrared, _previousStand);    /*om te zorgen dat hij herkent dat alles stilstaat*/
   //Airflow();
-  int infrared = 0;
-  for (int i = 0; i < 8; i++) infrared += analogRead(0);
-  infrared /= 8;
-  Serial.println(infrared);
 
-  ValueToLedScale(map(infrared, _infraredMin, _infraredMax, 0, 1023));
+  for (int i = 0; i < 8; i++) _infrared += analogRead(0);
+  _infrared /= 8;
+  Serial.println(_infrared);
+  ValueToLedScale(map(_infrared, _infraredMin, _infraredMax, 0, 1023));
 }
 
 void ValueToLedScale(int value) {
@@ -62,9 +63,9 @@ void ValueToLedScale(int value) {
   for (int i = 0; i < 7; i++) strip.setPixelColor(ledPositions[i][9], strip.Color(0, 0, 255));
 
   for (int j = 0; j < 8; j++) for (int i = 0; i < 7; i++) strip.setPixelColor(ledPositions[i][1 + j], strip.Color(0, constrain(calc - 256 * j, 0, 255), 255 - constrain(calc - 256 * j, 0, 255)));
- for (int i = 0; i < 6; i++) strip.setPixelColor(channelFreedom[i], strip.Color(255, 0, 0));/* (0, 0, j * j / 256)fellheid exponentiele toename (wordt opgevat als liniaire toename)*/
+  for (int i = 0; i < 6; i++) strip.setPixelColor(channelFreedom[i], strip.Color(255, 0, 0));/* (0, 0, j * j / 256)fellheid exponentiele toename (wordt opgevat als liniaire toename)*/
   for (int i = 0; i < 3; i++) strip.setPixelColor(channelBlue[i], strip.Color(0, 0, 255));
-for (int i = 0; i < 3; i++) strip.setPixelColor(channelGreen[i], strip.Color(0, 255, 0));
+  for (int i = 0; i < 3; i++) strip.setPixelColor(channelGreen[i], strip.Color(0, 255, 0));
 
   strip.show();
 }

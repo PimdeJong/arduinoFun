@@ -9,7 +9,7 @@ byte Stand ( int infrared, int &previousStand , bool &backward, byte &fadeValue,
   int d = (( _infraredMax - _infraredMin) * 0.80 + _infraredMin );
   int maxgGebied = (( _infraredMax - _infraredMin) * 0.97 + _infraredMin );
 
-  while (backward == false)
+  if (backward == false)
   {
     if (infrared <= a )
     {
@@ -32,7 +32,7 @@ byte Stand ( int infrared, int &previousStand , bool &backward, byte &fadeValue,
       fadeValue = map(infrared, d, _infraredMax, 0, 255);
     }
   }
-  while (backward == true)
+  if (backward == true)
     if (infrared > d)
     {
       stand = 5;
@@ -53,8 +53,6 @@ byte Stand ( int infrared, int &previousStand , bool &backward, byte &fadeValue,
       stand = 8;
       fadeValue = map(infrared, c, b, 0, 255);
     }
-  
 
   return stand;
-}
 }
