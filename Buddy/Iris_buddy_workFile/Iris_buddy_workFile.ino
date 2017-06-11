@@ -52,10 +52,10 @@ void loop()
   infrared /= 8;
   Serial.println(infrared);
 
-  valueToLedScale(map(infrared, _infraredMin, _infraredMax, 0, 1023));
+  ValueToLedScale(map(infrared, _infraredMin, _infraredMax, 0, 1023));
 }
 
-void valueToLedScale(int value) {
+void ValueToLedScale(int value) {
   int calc = map(value, 0, 1023, 0, 8 * 256 - 1);
 
   for (int i = 0; i < 7; i++) strip.setPixelColor(ledPositions[i][0], strip.Color(0, 255, 0));

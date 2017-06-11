@@ -9,7 +9,6 @@ byte Stand ( int infrared, int &previousStand , bool &backward, byte &fadeValue,
   int d = (( _infraredMax - _infraredMin) * 0.80 + _infraredMin );
   int maxgGebied = (( _infraredMax - _infraredMin) * 0.97 + _infraredMin );
 
-
   while (backward == false)
   {
     if (infrared <= a )
@@ -55,24 +54,7 @@ byte Stand ( int infrared, int &previousStand , bool &backward, byte &fadeValue,
       fadeValue = map(infrared, c, b, 0, 255);
     }
   
-  if (stand > previousStand)
-  {
-    backward = true;
-  }
 
-  if (stand < previousStand)
-  {
-    backward = false;
-  }
-  if (previousStand = ! stand) //deze alleen nodig als ik dat wil koppelen aan het opnieuw tellen van milis
-  {
-    changed = true;
-  }
-  else
-  {
-    changed = false;          // ^ ""
-  }
-  previousStand = stand;
   return stand;
 }
 }
