@@ -1,6 +1,7 @@
 #include <Adafruit_NeoPixel.h>
 #define ledPin 6                 /*ledjes*/
 //#define _infrared (0)             //infrared cable 0
+#define knopPin 5
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(80, ledPin, NEO_GRB + NEO_KHZ800); /* (total LED's,*/
 byte ledPositions[7][10] = {
@@ -21,18 +22,23 @@ byte channelGreen[3] =
 
 /*Dingen voor Herkenning dat er niets gebeurt*/
 byte _teller;
-int _previousStand = 0 ;
+int _previousRed = 0 ;
+int _previousPreviousRed = 0;
 bool _stagnated = false;
 
-bool _backward;
+int _backward = 1;
 
-byte _stand;
+byte _stand = 0 ;
 bool _changed;
 byte _fadeValue;
 
 int _infrared = 0;
-int _infraredMin = 100;
-int _infraredMax = 450;
+int _infraredMin = 105;
+int _infraredMax = 940;
+int _teller2;
+bool _callibrerende;
+byte _rondjesteller;
+byte _previousStand;
 
 
 void setup()
@@ -45,28 +51,44 @@ void setup()
 
 void loop()
 {
- _stand = Stand ( _infrared, _previousStand, _backward, _fadeValue, _changed);
- _backward = Direction ( _stand, _previousStand, _changed );
-  //_stagnated = Stagnation (_teller, _infrared, _previousStand);    /*om te zorgen dat hij herkent dat alles stilstaat*/
-  //Airflow();
 
   for (int i = 0; i < 8; i++) _infrared += analogRead(0);
   _infrared /= 8;
-  Serial.println(_infrared);
-  ValueToLedScale(map(_infrared, _infraredMin, _infraredMax, 0, 1023));
+    if (digitalRead(knopPin) == HIGH) { _callibrerende = true;      }
+  Calibrate();
+  Serial.println("ding: "+ String(digitalRead(knopPin)));
+
+  //_infrared = analogRead(0);
+  Serial.println("Infrarood waarde: " + String(_infrared));
+  
+  _stand = Stand ( _infrared, _backward, _fadeValue ); //_previousStand, _changed
+  Serial.println("Huidige stand: " + String(_stand));
+  
+  _backward = Direction ( _backward, _stand, _infrared);
+  Serial.println("Backwards: " + String(_backward));
+  Serial.println("fadeValue: " + String(_fadeValue));
+  //_stagnated = Stagnation (_teller, _infrared, _previousStand);    /*om te zorgen dat hij herkent dat alles stilstaat*/
+ Airflow();
+ 
+  Serial.println("peviouspreviousred" + String (_previousPreviousRed));
+  Serial.println("");
+delay (150);
 }
 
-void ValueToLedScale(int value) {
-  int calc = map(value, 0, 1023, 0, 8 * 256 - 1);
 
-  for (int i = 0; i < 7; i++) strip.setPixelColor(ledPositions[i][0], strip.Color(0, 255, 0));
-  for (int i = 0; i < 7; i++) strip.setPixelColor(ledPositions[i][9], strip.Color(0, 0, 255));
-
-  for (int j = 0; j < 8; j++) for (int i = 0; i < 7; i++) strip.setPixelColor(ledPositions[i][1 + j], strip.Color(0, constrain(calc - 256 * j, 0, 255), 255 - constrain(calc - 256 * j, 0, 255)));
-  for (int i = 0; i < 6; i++) strip.setPixelColor(channelFreedom[i], strip.Color(255, 0, 0));/* (0, 0, j * j / 256)fellheid exponentiele toename (wordt opgevat als liniaire toename)*/
-  for (int i = 0; i < 3; i++) strip.setPixelColor(channelBlue[i], strip.Color(0, 0, 255));
-  for (int i = 0; i < 3; i++) strip.setPixelColor(channelGreen[i], strip.Color(0, 255, 0));
-
-  strip.show();
-}
+  // ValueToLedScale(map(_infrared, _infraredMin, _infraredMax, 0, 1023));
+  
+//void ValueToLedScale(int value) {
+//  int calc = map(value, 0, 1023, 0, 8 * 256 - 1);
+//
+//  for (int i = 0; i < 7; i++) strip.setPixelColor(ledPositions[i][0], strip.Color(0, 255, 0));
+//  for (int i = 0; i < 7; i++) strip.setPixelColor(ledPositions[i][9], strip.Color(0, 0, 255));
+//
+//  for (int j = 0; j < 8; j++) for (int i = 0; i < 7; i++) strip.setPixelColor(ledPositions[i][1 + j], strip.Color(0, constrain(calc - 256 * j, 0, 255), 255 - constrain(calc - 256 * j, 0, 255)));
+//  for (int i = 0; i < 6; i++) strip.setPixelColor(channelFreedom[i], strip.Color(255, 0, 0));/* (0, 0, j * j / 256)fellheid exponentiele toename (wordt opgevat als liniaire toename)*/
+//  for (int i = 0; i < 3; i++) strip.setPixelColor(channelBlue[i], strip.Color(0, 0, 255));
+//  for (int i = 0; i < 3; i++) strip.setPixelColor(channelGreen[i], strip.Color(0, 255, 0));
+//
+//  strip.show();
+//}
 

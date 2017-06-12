@@ -6,10 +6,14 @@ bool Stagnation(int teller, int stand, int previousStand)
   {
     teller ++;
   }
-  if (teller >= 30)
+  if (teller >= 100)
   {
     stagnated = true;
+    teller = 0;
   }
-  
+  else
+  {
+  teller = 0;
+  }
   return stagnated;
 }
