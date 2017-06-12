@@ -16,37 +16,34 @@ void Calibrate()
 
   if (_callibrerende)
   {
-    int value;
-    _infraredMin = min(_infrared,_infraredMin );
+    _infraredMin = min(_infrared, _infraredMin );
     _infraredMax = max(_infrared, _infraredMax );
 
-    Rondjesteller(_rondjesteller);
-
-    if (_rondjesteller > 2) {
+    Rondjesteller();
+    if (_rondjesteller >= 2) {
 
       _callibrerende = false;
       _rondjesteller = 0;
     }
   }
-
 }
 
-byte Rondjesteller(int rondjesteller)
+void Rondjesteller()
 {
   if (_callibrerende)
-  {
-    if (_stand == 8 && _previousStand == 7)
+  { Serial.println("test 1");
+    if (_stand == 7 && _previousStand < _stand)
 
-    {
-      rondjesteller ++;
+    { Serial.println("test 2");
+      _rondjesteller ++;
     }
   }
-  return rondjesteller;
+  return _rondjesteller;
 }
 
 //void StartCalibratie ()
 //{
-//if (analogRead(6) 
+//if (analogRead(6)
 //
 //  Calibrate()
 //  }

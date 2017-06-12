@@ -54,30 +54,36 @@ void loop()
 
   for (int i = 0; i < 8; i++) _infrared += analogRead(0);
   _infrared /= 8;
-    if (digitalRead(knopPin) == HIGH) { _callibrerende = true;      }
+  if (digitalRead(knopPin) == HIGH) {    _callibrerende = true;  }
   Calibrate();
-  Serial.println("ding: "+ String(digitalRead(knopPin)));
-
+  
+  Serial.println("ding: " + String(digitalRead(knopPin)));
+  Serial.println("minimum: " + String(_infraredMin));
+  Serial.println("Maximum: " + String(_infraredMax));
+    Serial.println("_callibrerende: " + String(_callibrerende));
+      Serial.println("rondjesteller: " + String(_rondjesteller));
+  
   //_infrared = analogRead(0);
   Serial.println("Infrarood waarde: " + String(_infrared));
-  
+
   _stand = Stand ( _infrared, _backward, _fadeValue ); //_previousStand, _changed
   Serial.println("Huidige stand: " + String(_stand));
-  
+    Serial.println("previousstand: " + String(_previousStand));
+
   _backward = Direction ( _backward, _stand, _infrared);
   Serial.println("Backwards: " + String(_backward));
   Serial.println("fadeValue: " + String(_fadeValue));
   //_stagnated = Stagnation (_teller, _infrared, _previousStand);    /*om te zorgen dat hij herkent dat alles stilstaat*/
- Airflow();
- 
+  Airflow();
+
   Serial.println("peviouspreviousred" + String (_previousPreviousRed));
   Serial.println("");
-delay (150);
+  delay (150);
 }
 
 
-  // ValueToLedScale(map(_infrared, _infraredMin, _infraredMax, 0, 1023));
-  
+// ValueToLedScale(map(_infrared, _infraredMin, _infraredMax, 0, 1023));
+
 //void ValueToLedScale(int value) {
 //  int calc = map(value, 0, 1023, 0, 8 * 256 - 1);
 //

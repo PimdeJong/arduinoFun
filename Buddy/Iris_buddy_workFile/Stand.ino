@@ -7,8 +7,9 @@ byte Stand ( int infrared , int backward, byte &fadeValue ) // , bool changed, i
   int mid = (( _infraredMax - _infraredMin) * 0.25 + _infraredMin );//370//381
   int c = (( _infraredMax - _infraredMin) * 0.60 + _infraredMin );//711
   int maxgGebied = (( _infraredMax - _infraredMin) * 0.97 + _infraredMin );//
-
+ _previousStand = _stand;
   Serial.println("a: " + String(a) + "| mid: " + String(mid) + "| c: " + String(c));
+  
   if (_backward == 1)
   {
     if (infrared <= a )
@@ -62,6 +63,6 @@ byte Stand ( int infrared , int backward, byte &fadeValue ) // , bool changed, i
     }
 
   }
-  _previousStand = stand;
+
   return stand;
 }

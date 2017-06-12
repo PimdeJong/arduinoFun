@@ -11,7 +11,7 @@ void Airflow ()
     case 1: /*(Blauw =vol, uitgang = groen*/
       {
         BlueChamberIsFull();
-        for (int i = 0; i < 6; i++) strip.setPixelColor(channelFreedom[i], strip.Color(0, 255, 0));
+        for (int i = 0; i < 6; i++) strip.setPixelColor(channelFreedom[i], strip.Color(0, 0, 255));
         /* (0, 0, j * j / 256)fellheid exponentiele toename (wordt opgevat als liniaire toename)*/
       }      break;
 
@@ -27,7 +27,7 @@ void Airflow ()
 
       {
         GreenChamberFilling();        
-        for (int i = 0; i < 6; i++) strip.setPixelColor(channelFreedom[i], strip.Color(0, 0, 255));
+        for (int i = 0; i < 6; i++) strip.setPixelColor(channelFreedom[i], strip.Color(0, 255, 0));
       //  for (int i = 0; i < 6; i++) strip.setPixelColor(channelFreedom[i], strip.Color(0, 0, 255));
       }      break;
       
@@ -35,7 +35,7 @@ void Airflow ()
     case 5:
       {
         GreenChamberIsFull();
-        for (int i = 0; i < 6; i++) strip.setPixelColor(channelFreedom[i], strip.Color(0, 0, 255));
+        for (int i = 0; i < 6; i++) strip.setPixelColor(channelFreedom[i], strip.Color(0, 255, 0));
       }
       break;
     case 6:
@@ -47,7 +47,7 @@ void Airflow ()
     case 7:/* */
       {
         BlueChamberFilling();
-        for (int i = 0; i < 6; i++) strip.setPixelColor(channelFreedom[i], strip.Color(0, 255, 0));
+        for (int i = 0; i < 6; i++) strip.setPixelColor(channelFreedom[i], strip.Color(0, 0, 255));
       }
 break;
     default: /* */
