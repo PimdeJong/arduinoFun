@@ -1,8 +1,8 @@
 
-int bluePin = 2;
-int pinkPin = 3;
-int yellowPin = 4;
-int orangePin = 5;
+int bluePin = 8;
+int pinkPin = 9;
+int yellowPin = 10;
+int orangePin = 11;
 int currentStep = 0;
 
 int waveStepCount = 4;
@@ -22,7 +22,7 @@ void setup() {
 }
 void loop() {
   int stepCount = waveStepCount;
-  int currentS
+  int currentStep;
   int directionStep = clockwise ? currentStep : (4 - 1) - currentStep;
   switch (directionStep) {
     case 0:
@@ -59,8 +59,5 @@ void loop() {
   //}
   //else{
   // currentStep = 0;
-}
-}
-
 delay(20);
 }

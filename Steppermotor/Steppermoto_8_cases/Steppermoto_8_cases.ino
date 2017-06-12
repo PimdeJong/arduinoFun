@@ -1,8 +1,8 @@
 //this is a test with 8 cases to make the steppermotor stronger.
-int bluePin = 2;
-int pinkPin = 3;
-int yellowPin = 4;
-int orangePin = 5;
+int bluePin = 8;
+int pinkPin = 9;
+int yellowPin = 10;
+int orangePin = 11;
 int currentStep = 0;
 
 int waveStepCount = 4;
@@ -77,5 +77,5 @@ void loop() {
   currentStep = (++currentStep < totalCases ) ? currentStep : 0;
 
 
-  delay(2);
+  delay(1);
 }
