@@ -1,8 +1,15 @@
 #include <Adafruit_NeoPixel.h>
 #define ledPin 6                 /*ledjes*/
+
 //#define _infrared (0)             //infrared cable 0
 #define knopPin 5
 
+/*Servo*/
+#include <Servo.h>
+Servo hiepHoiServo;  // create servo object to control a servo
+byte servoStand;
+
+/*Ledjes*/
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(80, ledPin, NEO_GRB + NEO_KHZ800); /* (total LED's,*/
 byte ledPositions[7][10] = {
   { 0, 12, 13, 26, 27, 40, 41, 54, 55, 67},
@@ -20,25 +27,28 @@ byte channelBlue[3] =
 byte channelGreen[3] =
 { 77, 78, 79};
 
-/*Dingen voor Herkenning dat er niets gebeurt*/
+/*Calibratie*/
 byte _teller;
 int _previousRed = 0 ;
 int _previousPreviousRed = 0;
 bool _stagnated = false;
+bool _callibrerende;
+byte _rondjesteller;
 
+/*Direcion*/
 int _backward = 1;
 
+/*Stand*/
 byte _stand = 0 ;
 bool _changed;
 byte _fadeValue;
+byte _previousStand;
 
+/*Infrared sensor*/
 int _infrared = 0;
 int _infraredMin = 105;
 int _infraredMax = 940;
 int _teller2;
-bool _callibrerende;
-byte _rondjesteller;
-byte _previousStand;
 
 
 void setup()
@@ -47,6 +57,7 @@ void setup()
   strip.begin();
   strip.show(); // Initialize all pixels to 'off'
   // strip.show(); // Initialize all pixels to 'off'
+    hiepHoiServo.attach(9);  // attaches the servo on pin 9 to the servo object
 }
 
 void loop()
