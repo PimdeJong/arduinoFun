@@ -7,7 +7,6 @@
 /*Servo*/
 #include <Servo.h>
 Servo hiepHoiServo;  // create servo object to control a servo
-byte servoStand;
 
 /*Ledjes*/
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(80, ledPin, NEO_GRB + NEO_KHZ800); /* (total LED's,*/
@@ -48,6 +47,7 @@ byte _previousStand;
 int _infrared = 0;
 int _infraredMin = 105;
 int _infraredMax = 940;
+int _infraredArea;
 int _teller2;
 
 
@@ -65,6 +65,7 @@ void loop()
 
   for (int i = 0; i < 8; i++) _infrared += analogRead(0);
   _infrared /= 8;
+  
   if (digitalRead(knopPin) == HIGH) {    _callibrerende = true;  }
   Calibrate();
   
@@ -90,6 +91,13 @@ void loop()
   Serial.println("peviouspreviousred" + String (_previousPreviousRed));
   Serial.println("");
 HiepHoiServo();
+
+
+
+
+
+
+
   delay (150);
 }
 

@@ -1,31 +1,28 @@
 
 void HiepHoiServo()
 {
+  byte servoStand = 0 ;
+  _infraredArea = _infraredMax - _infraredMin;
+  int infraredServo = _infrared;
+  int infraredServoMin = _infraredMin;
+  infraredServoMin = (infraredServoMin + (_infraredArea * 0, 05));
+  int infraredServoMax = _infraredMax;
+  infraredServoMax = infraredServoMax - (_infraredArea * 0, 05);
 
-  if (_backward == 1)
+  if (infraredServo <= infraredServoMin)
   {
-    if (_infrared >= _infraredMin && _infrared <= _infraredMax)
-    {
-      servoStand = map(_infrared, _infraredMin, _infraredMax, 0, 180);     // scale it to use it with the servo (value between 0 and 180)
-    }
-    else
-    {
-      servoStand = map(_infrared, 0, 1023, 0, 180);                        // scale it(value between 0 and 1023) to use it with the servo (value between 0 and 180)
-    }
+    infraredServo = infraredServoMin;
   }
-  else // if (_backward == 1)
+  if (infraredServo >= infraredServoMax)
   {
-    if ((_infrared >= _infraredMin) && (_infrared <= _infraredMax))
-    {
-      servoStand = map(_infrared, _infraredMax, _infraredMin, 0, 180);     // scale it to use it with the servo (value between 0 and 180)
-    }
-    else
-    { 
-      servoStand = map(_infrared, 1023, 0, 0, 180);                        //
-    }
-
-
+    infraredServo = infraredServoMax;
   }
+
+  servoStand = map(infraredServo, infraredServoMin, infraredServoMax, 0, 180); // scale it to use it with the servo (value between 0 and 180)
+
+  Serial.println("servostand " + String(servoStand));
+  Serial.println("ServoMin: " + String(infraredServoMin));
+  Serial.println("ServoMax: " + String(infraredServoMax));
   hiepHoiServo.write(servoStand);                                         // sets the servo position according to the mapped value
   delay(15);
 }
