@@ -89,6 +89,7 @@ void loop()
 
   Serial.println("peviouspreviousred" + String (_previousPreviousRed));
   Serial.println("");
+HiepHoiServo();
   delay (150);
 }
 
