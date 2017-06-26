@@ -24,6 +24,6 @@ void HiepHoiServo()
   Serial.println("ServoMin: " + String(infraredServoMin));
   Serial.println("ServoMax: " + String(infraredServoMax));
   hiepHoiServo.write(servoStand);                                         // sets the servo position according to the mapped value
-  delay(15);
+  delay(1);
 }
 

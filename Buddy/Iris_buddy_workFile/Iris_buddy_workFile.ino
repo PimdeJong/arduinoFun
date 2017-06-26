@@ -98,7 +98,7 @@ HiepHoiServo();
 
 
 
-  delay (150);
+  delay (1);
 }
 
 
